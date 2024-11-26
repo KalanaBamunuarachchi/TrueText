@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using System.Threading.Tasks;
 using TrueText.ViewModels;
 using TrueText.Views;
 
@@ -13,14 +14,31 @@ namespace TrueText
             AvaloniaXamlLoader.Load(this);
         }
 
-        public override void OnFrameworkInitializationCompleted()
+        public override async void OnFrameworkInitializationCompleted()
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                desktop.MainWindow = new MainWindow
+                var splashWindow = new SplashScreen();
+                splashWindow.Show();
+                desktop.MainWindow  = splashWindow;
+
+                try
                 {
-                    DataContext = new MainWindowViewModel(),
-                };
+                    await Task.Delay(3000);
+
+                }
+                catch 
+                {
+                    splashWindow.Close();
+                    return;
+                }
+
+                var mainWindow = new MainWindow();
+                desktop.MainWindow = mainWindow;
+
+                mainWindow.Show();
+                splashWindow.Close();
+                
             }
 
             base.OnFrameworkInitializationCompleted();

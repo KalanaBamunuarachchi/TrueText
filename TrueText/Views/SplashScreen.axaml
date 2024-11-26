@@ -2,8 +2,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:semi="https://irihi.tech/semi"
         mc:Ignorable="d"
         x:Class="TrueText.SplashScreen"
-        Title="SplashScreen">
-  Welcome to Avalonia!
+		Width="200"
+		Height="200"
+		SystemDecorations="None"
+		WindowStartupLocation="CenterScreen"
+		Background="Transparent"
+		TransparencyLevelHint="Transparent"
+		TransparencyBackgroundFallback="Transparent"
+		
+		
+        Title="TrueText">
+	<Border Background="White" CornerRadius="24">
+		<StackPanel VerticalAlignment="Center" Margin="20">
+			<Image Source="/Assets/TrueTextLogo.ico" Width="100" Height="100"></Image>
+		</StackPanel>
+
+
+	</Border>
+  
 </Window>
