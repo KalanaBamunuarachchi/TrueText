@@ -3,11 +3,17 @@
         xmlns:vm="using:TrueText.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d"
         x:Class="TrueText.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
+		WindowStartupLocation="CenterScreen"
         Icon="/Assets/TrueTextLogo.ico"
+		HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+		Width="1500"
+		Height="800"
         Title="TrueText">
+	
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -15,6 +21,16 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="300"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		
+		<Border Grid.Column="0" Background="Beige"/>
+	</Grid>
+	
+	
+	
 
 </Window>
