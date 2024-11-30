@@ -5,6 +5,7 @@
 			 xmlns:semi="https://irihi.tech/semi"
              RequestedThemeVariant="Default">
 	
+	
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.DataTemplates>
@@ -14,10 +15,14 @@
     <Application.Styles>
 
 
-		<FluentTheme />
 		<semi:SemiTheme/>
+		<StyleInclude Source="/Styles/AppDefaultStyles.axaml"></StyleInclude>
 		
   
 		
     </Application.Styles>
+	<Application.Resources>
+		<SolidColorBrush x:Key="PrimaryBackground">#FFFFFF</SolidColorBrush>
+		<SolidColorBrush x:Key="SecondaryBackground">#F3F3F3</SolidColorBrush>
+	</Application.Resources>
 </Application>

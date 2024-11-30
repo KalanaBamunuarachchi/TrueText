@@ -26,8 +26,25 @@
 			<ColumnDefinition Width="300"/>
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
+
+		<Border Grid.Column="0" Background="{DynamicResource ResourceKey=SecondaryBackground}">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+
+				<StackPanel Grid.Row="0" Margin="20" Orientation="Horizontal">
+					<Image Source="/Assets/TrueTextLogo.ico" Height="40" HorizontalAlignment="Left"/>
+					<TextBlock Text="Truetext" FontFamily=""/>
+				</StackPanel>
+			</Grid>
+		</Border>
 		
-		<Border Grid.Column="0" Background="Beige"/>
+		<Border Grid.Column="1" Background=""/>
+
+		
 	</Grid>
 	
 	
