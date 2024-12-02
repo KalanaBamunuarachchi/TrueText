@@ -6,10 +6,8 @@
         mc:Ignorable="d"
         x:Class="TrueText.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-		WindowStartupLocation="CenterScreen"
+		WindowStartupLocation="CenterScreen"	
         Icon="/Assets/TrueTextLogo.ico"
-		HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch"
 		Width="1500"
 		Height="800"
         Title="TrueText">
@@ -23,11 +21,11 @@
 
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="300"/>
+			<ColumnDefinition Width="225"/>
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
 
-		<Border Grid.Column="0" Background="{DynamicResource ResourceKey=SecondaryBackground}">
+		<Border Grid.Column="0" Background="{DynamicResource ResourceKey=SecondaryBackground}" Padding="20">
 			<Grid>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto"/>
@@ -35,9 +33,10 @@
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
 
-				<StackPanel Grid.Row="0" Margin="20" Orientation="Horizontal">
-					<Image Source="/Assets/TrueTextLogo.ico" Height="40" HorizontalAlignment="Left"/>
-					<TextBlock Text="Truetext" FontFamily=""/>
+				<StackPanel Grid.Row="0" >
+					<Image Source="{SvgImage /Assets/Images/TrueText.svg}" Height="40"  />
+
+					<Button Content="Dashboard" Theme="" HorizontalAlignment="Stretch" Margin="0 20 0 20" ></Button>
 				</StackPanel>
 			</Grid>
 		</Border>
