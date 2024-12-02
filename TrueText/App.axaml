@@ -24,5 +24,9 @@
 	<Application.Resources>
 		<SolidColorBrush x:Key="PrimaryBackground">#FFFFFF</SolidColorBrush>
 		<SolidColorBrush x:Key="SecondaryBackground">#F3F3F3</SolidColorBrush>
+		<SolidColorBrush x:Key="PrimaryText">#000000</SolidColorBrush>
+		<SolidColorBrush x:Key="PrimaryTextHover">#5955FF</SolidColorBrush>
+		<SolidColorBrush x:Key="PrimaryButtonHover">#CDCCFF</SolidColorBrush>
+		
 	</Application.Resources>
 </Application>

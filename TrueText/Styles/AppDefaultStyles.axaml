@@ -2,13 +2,24 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		 xmlns:semi="https://irihi.tech/semi">
 	<Design.PreviewWith>
-		<Border Padding="20">
+		<Border Padding="20" Background="{DynamicResource ResourceKey=SecondaryBackground}" Width="225" >
 
-			<Button Content="It's Working"  Theme="{DynamicResource ResourceKey=SolidButton}" ></Button>
+			<Button Content="It's Working"></Button>
 			
 			
 		</Border>
 		
 	</Design.PreviewWith>
+
+	<Style Selector="Button">
+		<Setter	Property="Theme" Value="{DynamicResource ResourceKey=BorderlessButton}"></Setter>
+		<Setter	Property="Foreground" Value="{DynamicResource ResourceKey=PrimaryText}"></Setter>
+		<Setter	Property="FontWeight" Value="Medium"> </Setter>
+	</Style>
+	<Style Selector="Button:pointerover /template/ContentPresenter">
+		<Setter	Property="Foreground" Value="{DynamicResource ResourceKey=PrimaryTextHover}"></Setter>
+		<Setter	Property="Background" Value="{DynamicResource ResourceKey=PrimaryButtonHover}"></Setter>
+		<Setter Property="CornerRadius" Value="8"></Setter>
+	</Style>
 	
 </Styles>
