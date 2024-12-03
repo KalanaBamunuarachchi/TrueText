@@ -37,14 +37,16 @@
 					<Image Source="{SvgImage /Assets/Images/TrueText.svg}" Height="40"  />
 					<Border Height="1" Background="Gray" HorizontalAlignment="Stretch" Margin="0,0,0,20"/>
 
-					<Button Content="Dashboard" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left" ></Button>
-					<Button Content="Scan"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"   ></Button>
-					<Button Content="Devices" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"  ></Button>
+					<Button Content="Dashboard" FontFamily="{DynamicResource ResourceKey=Inter}" FontWeight="Regular" FontSize="16" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left" ></Button>
+					<Button Content="Scan" FontFamily="{DynamicResource ResourceKey=Inter}" FontWeight="Medium" FontSize="16"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"    ></Button>
+					<Button Content="Devices" FontFamily="{DynamicResource ResourceKey=Inter}" FontWeight="Medium" FontSize="16" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"  ></Button>
 					
 				</StackPanel>
 				<StackPanel Grid.Row="2" Spacing="20">
 					<Button Content="Help &amp; Feedback"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"  FontSize="" ></Button>
 					<Button Content="Settings"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"  ></Button>
+					
+
 				</StackPanel>
 			</Grid>
 		</Border>

@@ -27,6 +27,12 @@
 		<SolidColorBrush x:Key="PrimaryText">#000000</SolidColorBrush>
 		<SolidColorBrush x:Key="PrimaryTextHover">#5955FF</SolidColorBrush>
 		<SolidColorBrush x:Key="PrimaryButtonHover">#CDCCFF</SolidColorBrush>
+
+		<!-- Fonts -->
+		<FontFamily x:Key="Inter">/Assets/Fonts/Inter-VariableFont_opsz,wght.ttf#Inter</FontFamily>
+		<FontFamily x:Key="RedHatDisplay">/Assets/Fonts/RedHatDisplay-VariableFont_wght.ttf#Red Hat Display</FontFamily>
 		
+
+
 	</Application.Resources>
 </Application>

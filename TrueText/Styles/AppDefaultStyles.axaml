@@ -11,6 +11,9 @@
 		
 	</Design.PreviewWith>
 
+	<Style Selector="Window">
+	</Style>
+
 	<Style Selector="Button">
 		<Setter	Property="Theme" Value="{DynamicResource ResourceKey=BorderlessButton}"></Setter>
 		<Setter	Property="Foreground" Value="{DynamicResource ResourceKey=PrimaryText}"></Setter>
