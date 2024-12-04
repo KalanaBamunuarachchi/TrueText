@@ -4,7 +4,12 @@
 	<Design.PreviewWith>
 		<Border Padding="20" Background="{DynamicResource ResourceKey=SecondaryBackground}" Width="225" >
 
-			<Button Content="It's Working"></Button>
+			<Button  FontWeight="Medium" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left" >
+				<StackPanel Orientation="Horizontal">
+					<Label  Classes="icon"   Content="&#xE464;" ></Label>
+					<Label Content="Dashboard" FontSize="16" ></Label>
+				</StackPanel>
+			</Button>
 			
 			
 		</Border>
@@ -12,7 +17,10 @@
 	</Design.PreviewWith>
 
 	<Style Selector="Window">
+		<Setter	Property="FontFamily" Value="{DynamicResource ResourceKey=Inter}"></Setter>
 	</Style>
+
+	
 
 	<Style Selector="Button">
 		<Setter	Property="Theme" Value="{DynamicResource ResourceKey=BorderlessButton}"></Setter>
@@ -23,6 +31,11 @@
 		<Setter	Property="Foreground" Value="{DynamicResource ResourceKey=PrimaryTextHover}"></Setter>
 		<Setter	Property="Background" Value="{DynamicResource ResourceKey=PrimaryButtonHover}"></Setter>
 		<Setter Property="CornerRadius" Value="8"></Setter>
+	</Style>
+
+	<Style Selector="Label.icon">
+		<Setter Property="FontFamily" Value="{DynamicResource ResourceKey=Phosphor}"></Setter>
+		<Setter	Property="Margin" Value="0 5 5 0"></Setter>
 	</Style>
 	
 </Styles>

@@ -37,14 +37,40 @@
 					<Image Source="{SvgImage /Assets/Images/TrueText.svg}" Height="40"  />
 					<Border Height="1" Background="Gray" HorizontalAlignment="Stretch" Margin="0,0,0,20"/>
 
-					<Button Content="Dashboard" FontFamily="{DynamicResource ResourceKey=Inter}" FontWeight="Regular" FontSize="16" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left" ></Button>
-					<Button Content="Scan" FontFamily="{DynamicResource ResourceKey=Inter}" FontWeight="Medium" FontSize="16"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"    ></Button>
-					<Button Content="Devices" FontFamily="{DynamicResource ResourceKey=Inter}" FontWeight="Medium" FontSize="16" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"  ></Button>
+					<Button  FontWeight="Medium" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left" >
+						<StackPanel Orientation="Horizontal">
+							<Label  Classes="icon"   Content="&#xE464;" ></Label>
+							<Label Content="Dashboard" FontSize="16" ></Label>
+						</StackPanel>
+					</Button>
+					<Button  FontWeight="Medium" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left" >
+						<StackPanel Orientation="Horizontal">
+							<Label  Classes="icon"   Content="&#xEBB6;" ></Label>
+							<Label Content="Scan" FontSize="16" ></Label>
+						</StackPanel>
+					</Button>
+					<Button  FontWeight="Medium" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left" >
+						<StackPanel Orientation="Horizontal">
+							<Label  Classes="icon"   Content="&#xEDDE;" ></Label>
+							<Label Content="Devices" FontSize="16" ></Label>
+						</StackPanel>
+					</Button>
+					<Button Content="test Button" HorizontalAlignment="Left"></Button>
 					
 				</StackPanel>
 				<StackPanel Grid.Row="2" Spacing="20">
-					<Button Content="Help &amp; Feedback"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"  FontSize="" ></Button>
-					<Button Content="Settings"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"  ></Button>
+					<Button  FontWeight="Medium" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left" >
+						<StackPanel Orientation="Horizontal">
+							<Label  Classes="icon"   Content="&#xE3E8;" ></Label>
+							<Label Content="Help &amp; FeedBack" FontSize="16" ></Label>
+						</StackPanel>
+					</Button>
+					<Button  FontWeight="Medium" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left" >
+						<StackPanel Orientation="Horizontal">
+							<Label  Classes="icon"   Content="&#xE434;" ></Label>
+							<Label Content="Settings" FontSize="16" ></Label>
+						</StackPanel>
+					</Button>
 					
 
 				</StackPanel>

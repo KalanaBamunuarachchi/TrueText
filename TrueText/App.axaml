@@ -29,8 +29,9 @@
 		<SolidColorBrush x:Key="PrimaryButtonHover">#CDCCFF</SolidColorBrush>
 
 		<!-- Fonts -->
-		<FontFamily x:Key="Inter">/Assets/Fonts/Inter-VariableFont_opsz,wght.ttf#Inter</FontFamily>
+		<FontFamily x:Key="">/Assets/Fonts/Inter-VariableFont_opsz,wght.ttf#Inter</FontFamily>
 		<FontFamily x:Key="RedHatDisplay">/Assets/Fonts/RedHatDisplay-VariableFont_wght.ttf#Red Hat Display</FontFamily>
+		<FontFamily x:Key="Phosphor">/Assets/Fonts/Phosphor.ttf#Phosphor</FontFamily>
 		
 
 
