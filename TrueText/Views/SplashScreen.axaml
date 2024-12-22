@@ -28,13 +28,20 @@
 			<ColumnDefinition Width="440"/>
 		</Grid.ColumnDefinitions>
 
-		<Border Grid.Column="0"	Background="White" CornerRadius="24 0  0 24" Padding="20 20 20 20">
-			<Grid>
+		<Border Grid.Column="0"	Background="White" CornerRadius="24 0  0 24" Padding="20 20 20 20" >
+			
+			<Grid  >
 				<Grid.RowDefinitions>
 					<RowDefinition Height="220"/>
 					<RowDefinition Height="*"/>
 					<RowDefinition Height="220"/>
 				</Grid.RowDefinitions>
+
+				<Rectangle Grid.RowSpan="3" Width="400" Height="500" Fill="White"
+                       Stroke="LightGray" StrokeThickness="1"
+                       RadiusX="16" RadiusY="16" HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+
 
 				<StackPanel Grid.Row="0" Spacing="20" Margin="20" HorizontalAlignment="Left" >
 					<Image Source="{SvgImage /Assets/Images/TrueText.svg}" Height="40"  />
@@ -42,9 +49,9 @@
 				</StackPanel>
 			</Grid>
 		</Border>
-		<Border Grid.Column="1" Background="Purple" CornerRadius="0 24 24 0" Padding="20 20 20 20">
-			<StackPanel >
-				<Image Source="{SvgImage /Assets/Images/TrueText.svg}" />
+		<Border Grid.Column="1" Background="{DynamicResource ResourceKey=PrimaryBackground}" CornerRadius="0 24 24 0" Padding="20 20 20 20">
+			<StackPanel  VerticalAlignment="Center" >
+				<Image Source="/Assets/Images/Isometric Logo.png" Height="350"/>
 			</StackPanel>
 			
 		</Border>
