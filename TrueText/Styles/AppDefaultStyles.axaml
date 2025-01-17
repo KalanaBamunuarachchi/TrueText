@@ -33,6 +33,10 @@
 		<Setter Property="CornerRadius" Value="8"></Setter>
 	</Style>
 
+	<Style Selector="Button:pointerover Label">
+		<Setter	Property="Foreground" Value="{DynamicResource ResourceKey=PrimaryTextHover}"></Setter>
+	</Style>
+
 	<Style Selector="Label.icon">
 		<Setter Property="FontFamily" Value="{DynamicResource ResourceKey=Phosphor}"></Setter>
 		<Setter	Property="Margin" Value="0 5 5 0"></Setter>

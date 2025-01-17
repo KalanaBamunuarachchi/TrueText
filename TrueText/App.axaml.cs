@@ -33,8 +33,10 @@ namespace TrueText
                     return;
                 }
 
-                var mainWindow = new MainWindow();
-                desktop.MainWindow = mainWindow;
+                var mainWindow = new MainWindow
+                {
+                    DataContext = new MainWindowViewModel()
+                };
 
                 mainWindow.Show();
                 splashWindow.Close();

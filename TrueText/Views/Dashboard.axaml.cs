@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace TrueText;
 
-public partial class ScanPage : UserControl
+public partial class Dashboard : UserControl
 {
-    public ScanPage()
+    public Dashboard()
     {
         InitializeComponent();
     }
