@@ -11,10 +11,10 @@ namespace TrueText
         public Control? Build(object? data)
         {
             if (data is null)
-                return null;
+                return new ();
 
-            var name = data.GetType().FullName!.Replace("ViewModel", "View", StringComparison.Ordinal);
-            var type = Type.GetType(name);
+            var viewName = data.GetType().FullName!.Replace("ViewModel", "View", StringComparison.InvariantCulture);
+            var type = Type.GetType(viewName);
 
             if (type != null)
             {
@@ -23,7 +23,7 @@ namespace TrueText
                 return control;
             }
 
-            return new TextBlock { Text = "Not Found: " + name };
+            return new TextBlock { Text = "Not Found: " + viewName };
         }
 
         public bool Match(object? data)

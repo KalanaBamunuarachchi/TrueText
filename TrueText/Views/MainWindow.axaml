@@ -1,45 +1,34 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:TrueText.ViewModels"
-		xmlns:view="clr-namespace:TrueText"
-		xmlns:local="using:TrueText"
+        xmlns:view="clr-namespace:TrueText.Views" 
+        xmlns:local="using:TrueText"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         x:Class="TrueText.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-		WindowStartupLocation="CenterScreen"	
+        WindowStartupLocation="CenterScreen"
         Icon="/Assets/TrueTextLogo.ico"
-		HorizontalAlignment="Stretch"
-		VerticalAlignment="Stretch"
-		WindowState="Maximized"
-
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        WindowState="Maximized"
         Title="TrueText">
-	<Design.DataContext>
-		<vm:MainWindowViewModel/>
-	</Design.DataContext>
-	
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
 
-    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="225"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-	<Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="225"/>
-			<ColumnDefinition Width="*"/>
-		</Grid.ColumnDefinitions>
+        <ContentControl Grid.Column="1" Content="{Binding CurrentPage}"  />
+        
 
-		<ContentControl></ContentControl>
+        <local:SideMenu Grid.Column="0" DataContext="{Binding}"/>
 
-		<local:SideMenu Grid.Column="0" />
-
-
-
-		<Border Grid.Column="1" Background=""/>
-
-		
-	</Grid>
-	
-	
-	
-
+        <Border Grid.Column="1" Background=""/>
+    </Grid>
 </Window>

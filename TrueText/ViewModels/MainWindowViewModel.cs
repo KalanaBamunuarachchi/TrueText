@@ -1,22 +1,39 @@
-﻿namespace TrueText.ViewModels
-{
-    public class MainWindowViewModel : ViewModelBase
-    {
-#pragma warning disable CA1822 // Mark members as static
-        public string Dashboard => "Dashboard";
-#pragma warning restore CA1822 // Mark members as static
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
+namespace TrueText.ViewModels
+{
+    public partial class MainWindowViewModel : ObservableObject
+    {
+        [ObservableProperty]
         private ViewModelBase _currentPage;
 
-        // Correctly use DashboardViewModel here
-        private readonly DashboardViewModel _dashboard = new DashboardViewModel();
+        private readonly DashboardPageViewModel _dashboardPageViewModel = new();
+        private readonly ScanPageViewModel _scanPageViewModel = new();
 
-        private readonly ScanPageViewModel _scan = new ScanPageViewModel();
+        public MainWindowViewModel()
+        {
+            CurrentPage = _dashboardPageViewModel;
+            NavigateToDashboardCommand = new RelayCommand(NavigateToDashboard);
+            NavigateToScanPageCommand = new RelayCommand(NavigateToScanPage);
+        }
 
-        private readonly DevicePageViewModel _devices = new DevicePageViewModel();
+        public IRelayCommand NavigateToDashboardCommand { get; }
+        public IRelayCommand NavigateToScanPageCommand { get; }
 
-        public MainWindowViewModel() {
-            
+        public void NavigateToDashboard()
+        {
+            CurrentPage = _dashboardPageViewModel;
+        }
+
+        public void NavigateToScanPage()
+        {
+            CurrentPage = _scanPageViewModel;
         }
     }
 }
