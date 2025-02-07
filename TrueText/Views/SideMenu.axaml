@@ -5,7 +5,9 @@
 			 xmlns:vm="clr-namespace:TrueText.ViewModels;assembly=TrueText"
              mc:Ignorable="d"
              x:Class="TrueText.SideMenu"
-			 x:DataType="vm:MainWindowViewModel">
+			 x:DataType="vm:MainWindowViewModel"
+			 DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext}">
+	
 
     <Border Background="{DynamicResource ResourceKey=SecondaryBackground}" Padding="20">
         <Grid>

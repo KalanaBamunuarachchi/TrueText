@@ -1,8 +1,9 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using System;
 
-namespace TrueText;
+namespace TrueText.Views;
 
 public partial class DevicesPageView : UserControl
 {

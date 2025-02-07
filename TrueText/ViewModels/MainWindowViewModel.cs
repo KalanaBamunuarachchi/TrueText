@@ -24,12 +24,11 @@ namespace TrueText.ViewModels
 
         public MainWindowViewModel()
         {
-            CurrentPage = _dashboardPageViewModel;
-            NavigateToDashboardCommand = new RelayCommand(NavigateToDashboard);
-            NavigateToScanPageCommand = new RelayCommand(NavigateToScanPage);
-            NavigateToDevicesPageCommand = new RelayCommand(NavigateToDevicesPage);
-            NavigateToHelpPageCommand = new RelayCommand(NavigateToHelpPage);
-            NavigateToSettingsPageCommand = new RelayCommand(NavigateToSettingsPage);
+            NavigateToDashboardCommand = new RelayCommand(NavigateToDashboard, () => true);
+            NavigateToScanPageCommand = new RelayCommand(NavigateToScanPage, () => true);
+            NavigateToDevicesPageCommand = new RelayCommand(NavigateToDevicesPage, () => true);
+            NavigateToHelpPageCommand = new RelayCommand(NavigateToHelpPage, () => true);
+            NavigateToSettingsPageCommand = new RelayCommand(NavigateToSettingsPage, () => true);
 
             Debug.WriteLine($"NavigateToDashboardCommand: {NavigateToDashboardCommand != null}");
             Debug.WriteLine($"NavigateToScanPageCommand: {NavigateToScanPageCommand != null}");
