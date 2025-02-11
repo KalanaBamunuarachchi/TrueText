@@ -12,9 +12,14 @@
 			</Button>
 			
 			
+
+
+
 		</Border>
 		
+		
 	</Design.PreviewWith>
+	
 
 	<Style Selector="Window">
 		<Setter	Property="FontFamily" Value="{DynamicResource ResourceKey=Inter}"></Setter>
@@ -42,4 +47,13 @@
 		<Setter	Property="Margin" Value="0 5 5 0"></Setter>
 	</Style>
 	
+	<!-- Fonts -->
+	<Style Selector="Button.special-button">
+		<Setter Property="Theme" Value="{DynamicResource ResourceKey=PrimaryButtonHover}"/>
+		<Setter Property="Foreground" Value="White"/>
+		<Setter Property="Background" Value="Red"/>
+		<Setter Property="CornerRadius" Value="8"/>
+	</Style>
+
+
 </Styles>
