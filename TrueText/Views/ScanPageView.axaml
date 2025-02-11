@@ -16,6 +16,8 @@
 				<RowDefinition Height="Auto"/>
 			</Grid.RowDefinitions>
 
+			<local:RibbonControl/>
+
 			
 		</Grid>
 	</Border>
