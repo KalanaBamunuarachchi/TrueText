@@ -2,29 +2,21 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using System;
+using TrueText.ViewModels;  // Add this line
+
 
 namespace TrueText;
 
 public partial class RibbonControl : UserControl
 {
-    private TextBlock? _greetingTextBlock;
-
     public RibbonControl()
     {
         InitializeComponent();
-        _greetingTextBlock = this.FindControl<TextBlock>("GreetingText");
-        if (_greetingTextBlock != null)
-        {
-            _greetingTextBlock.Text = GetGreetingMessage();
-        }
+        DataContext = new RibbonControlViewModel(); // Set the ViewModel as DataContext
     }
 
-    private string GetGreetingMessage()
+    private void InitializeComponent()
     {
-        var hour = DateTime.Now.Hour;
-        if (hour >= 5 && hour < 12) return "Good Morning";
-        if (hour >= 12 && hour < 17) return "Good Afternoon";
-        if (hour >= 17 && hour < 21) return "Good Evening";
-        return "Good Night";
+        AvaloniaXamlLoader.Load(this);
     }
 }
