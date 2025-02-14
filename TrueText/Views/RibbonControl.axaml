@@ -7,14 +7,15 @@
              x:Class="TrueText.RibbonControl"
 			 x:DataType="vm:RibbonControlViewModel" >
 
-	<Border CornerRadius="4" Background="#F1F1F1" Height="40" >
+	<Border CornerRadius="8" Background="#F1F1F1" Height="40" >
 		<Grid>
 			<TextBlock Text="{Binding Greeting}"
                        VerticalAlignment="Center"
                        Margin="10,0,0,0"
                        FontSize="16"
-                       FontWeight="Bold"
-					   Foreground=""/>
+                       FontWeight=""
+					   Foreground="#5955FF"
+					   FontFamily="{DynamicResource ResourceKey=RedHatDisplayBold}"/>
 
 		</Grid>
 	</Border>

@@ -8,18 +8,30 @@
              xmlns:view="clr-namespace:TrueText.Views"
              x:Class="TrueText.Views.ScanPageView">
 
-	<Border Padding="20">
-		<Grid>
-			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="*"/>
-				<RowDefinition Height="Auto"/>
-			</Grid.RowDefinitions>
-
+	<Grid ColumnDefinitions="*, *" RowDefinitions="Auto, *" >
+		<!-- Ribbon -->
+		<StackPanel Grid.Row="0" Grid.Column="0">
 			<local:RibbonControl/>
+		</StackPanel>
 
+		<!-- Scan Area -->
+		
+		<!-- Preview Area -->
+		<StackPanel Grid.Row="1" Grid.Column="0">
 			
-		</Grid>
-	</Border>
+		</StackPanel>
+
+		<!-- Controls -->
+		<StackPanel Grid.Row="1" Grid.Column="1">
+			
+		</StackPanel>
+	
+		
+			
+			
+			
+		
+	</Grid>
+	
 	
 </UserControl>
