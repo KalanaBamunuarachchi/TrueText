@@ -17,10 +17,35 @@
 		<!-- Scan Area -->
 
 		<!-- Preview Area -->
-		<StackPanel Grid.Row="1" Grid.Column="0">
-			
+		<Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<!-- Left: Expands to take available space -->
+				<ColumnDefinition Width="Auto" />
+				<!-- Right: Shrinks to fit content -->
+			</Grid.ColumnDefinitions>
 
-		</StackPanel>
+			<!-- Left Side: TextBlock -->
+			<TextBlock Text="Connected Devices"
+					   FontSize="16"
+					   FontWeight="Bold"
+					   VerticalAlignment="Top"
+					   HorizontalAlignment="Left"
+					   Foreground="{DynamicResource ResourceKey=PrimaryText}" 
+					   />
+
+			<!-- Right Side: Button -->
+			<Button Content="Manage"
+					Grid.Column="1"
+					Classes="Tertiary"
+					FontSize="14"
+					
+					VerticalAlignment="Top"
+					HorizontalAlignment="Right"
+					Background="{DynamicResource ResourceKey=PrimaryButton}"
+					/>
+		</Grid>
+
 
 		<!-- Controls -->
 		<StackPanel Grid.Row="1" Grid.Column="1">
