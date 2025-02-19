@@ -41,21 +41,21 @@
                     </StackPanel>
                 </Button>-->
 
-				<Button Command="{Binding NavigateToDashboardCommand}" FontWeight="Medium" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
+				<Button Classes="Nav-Bar" Command="{Binding NavigateToDashboardCommand}" FontWeight="Medium" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
 					<Grid ColumnDefinitions="Auto,*" VerticalAlignment="Center">
 						<Label Classes="icon" Content="&#xE464;" />
 						<Label Content="Dashboard" FontSize="16" Grid.Column="1"/>
 					</Grid>
 				</Button>
 
-				<Button Command="{Binding NavigateToScanPageCommand}" FontWeight="Medium" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
+				<Button Classes="Nav-Bar" Command="{Binding NavigateToScanPageCommand}" FontWeight="Medium" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
 					<Grid ColumnDefinitions="Auto,*" VerticalAlignment="Center">
 						<Label Classes="icon" Content="&#xEBB6;" />
 						<Label Content="Scan" FontSize="16" Grid.Column="1"/>
 					</Grid>
 				</Button>
 
-				<Button Command="{Binding NavigateToDevicesPageCommand}" FontWeight="Medium" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
+				<Button Classes="Nav-Bar" Command="{Binding NavigateToDevicesPageCommand}" FontWeight="Medium" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
 					<Grid ColumnDefinitions="Auto,*" VerticalAlignment="Center">
 						<Label Classes="icon" Content="&#xEDDE;" />
 						<Label Content="Devices" FontSize="16" Grid.Column="1"/>
@@ -65,14 +65,14 @@
 			</StackPanel>
 
             <!-- Bottom Section -->
-            <StackPanel Grid.Row="2" Spacing="20">
-                <Button Command="{Binding NavigateToHelpPageCommand}" FontWeight="Medium" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
+            <StackPanel  Grid.Row="2" Spacing="20">
+                <Button Classes="Nav-Bar" Command="{Binding NavigateToHelpPageCommand}" FontWeight="Medium" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
                     <StackPanel Orientation="Horizontal">
                         <Label Classes="icon" Content="&#xE3E8;" />
                         <Label Content="Help &amp; Feedback" FontSize="16" />
                     </StackPanel>
                 </Button>
-                <Button Command="{Binding NavigateToSettingsPageCommand}" FontWeight="Medium" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
+                <Button Classes="Nav-Bar" Command="{Binding NavigateToSettingsPageCommand}" FontWeight="Medium" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
                     <StackPanel Orientation="Horizontal">
                         <Label Classes="icon" Content="&#xE434;" />
                         <Label Content="Settings" FontSize="16" />

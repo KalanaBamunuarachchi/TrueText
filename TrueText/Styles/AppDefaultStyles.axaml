@@ -4,7 +4,7 @@
 	<Design.PreviewWith>
 		<Border Padding="20" Background="{DynamicResource ResourceKey=SecondaryBackground}" Width="225" >
 
-			<Button  FontWeight="Medium" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left" >
+			<Button Classes="Nav-Bar"  FontWeight="Medium" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left" >
 				<StackPanel Orientation="Horizontal">
 					<Label  Classes="icon"   Content="&#xE464;" ></Label>
 					<Label Content="Dashboard" FontSize="16" ></Label>
@@ -27,18 +27,18 @@
 
 	
 
-	<Style Selector="Button">
+	<Style Selector="Button.Nav-Bar">
 		<Setter	Property="Theme" Value="{DynamicResource ResourceKey=BorderlessButton}"></Setter>
 		<Setter	Property="Foreground" Value="{DynamicResource ResourceKey=PrimaryText}"></Setter>
 		<Setter	Property="FontWeight" Value="Medium"> </Setter>
 	</Style>
-	<Style Selector="Button:pointerover /template/ContentPresenter">
+	<Style Selector="Button.Nav-Bar:pointerover /template/ContentPresenter">
 		<Setter	Property="Foreground" Value="{DynamicResource ResourceKey=PrimaryTextHover}"></Setter>
 		<Setter	Property="Background" Value="{DynamicResource ResourceKey=PrimaryButtonHover}"></Setter>
 		<Setter Property="CornerRadius" Value="8"></Setter>
 	</Style>
 
-	<Style Selector="Button:pointerover Label">
+	<Style Selector="Button.Nav-Bar:pointerover Label">
 		<Setter	Property="Foreground" Value="{DynamicResource ResourceKey=PrimaryTextHover}"></Setter>
 	</Style>
 
