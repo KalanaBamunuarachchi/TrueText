@@ -16,7 +16,7 @@ namespace TrueText
             // Initialize Database Here
             using (var db = new AppDbContext())
             {
-                db.Database.EnsureCreated(); // Create DB if not exists
+                db.Database.EnsureCreated(); 
             }
 
             BuildAvaloniaApp()

@@ -13,13 +13,16 @@
 		</StackPanel>
 
 		<!-- Preview Area -->
-		<Border Grid.Row="1" Grid.Column="0" BorderBrush="Gray" >
-
+		<Border Grid.Row="1" Grid.Column="0" BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10">
+			<TextBlock Text="Scanned Image Preview" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Foreground="Gray"/>
 		</Border>
 
 		<!-- Controls -->
-		<StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
-			
+		<StackPanel Grid.Row="1" Grid.Column="1" Margin="10" VerticalAlignment="Top" Spacing="10">
+			<TextBlock Text="Select Printer" FontWeight="Bold" FontSize="14"/>
+			<ComboBox Width="200" Height="40"/>
+
+			<Button Content="Scan" Width="200" Height="40" Background="#0078D7" Foreground="White" HorizontalAlignment="Center"/>
 		</StackPanel>
 	</Grid>
 </UserControl>
