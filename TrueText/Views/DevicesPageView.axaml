@@ -7,7 +7,8 @@
              xmlns:vm="using:TrueText.ViewModels"
              xmlns:view="clr-namespace:TrueText.Views"
              x:Class="TrueText.Views.DevicesPageView"
-			 x:DataType="vm:DevicesPageViewModel">
+			 x:DataType="vm:DevicesPageViewModel"
+			 xmlns:models="clr-namespace:TrueText.Models">
 
 	<Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto, *">
 		<!-- Ribbon -->
@@ -42,9 +43,19 @@
 			</Button>
 		</Grid>
 
-		<!-- Device List (Fixed Row) -->
+		<!-- Device List -->
 		<Grid Grid.Row="2" Margin="10">
-			<ListBox ItemsSource="{Binding Devices}" />
+			<ListBox ItemsSource="{Binding Devices}">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="{Binding Name}" Margin="0,0,10,0"/>
+							<TextBlock Text="{Binding Status}" Foreground="Gray"/>
+						</StackPanel>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+
 		</Grid>
 	</Grid>
 	

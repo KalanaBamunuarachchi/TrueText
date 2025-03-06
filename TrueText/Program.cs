@@ -1,6 +1,7 @@
 ﻿using System;
 using Avalonia;
 using Avalonia.ReactiveUI;
+using TrueText.Data;
 
 namespace TrueText
 {
@@ -10,8 +11,17 @@ namespace TrueText
         // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
         // yet and stuff might break.
         [STAThread]
-        public static void Main(string[] args) => BuildAvaloniaApp()
-            .StartWithClassicDesktopLifetime(args);
+        public static void Main(string[] args)
+        {
+            // Initialize Database Here
+            using (var db = new AppDbContext())
+            {
+                db.Database.EnsureCreated(); // Create DB if not exists
+            }
+
+            BuildAvaloniaApp()
+                .StartWithClassicDesktopLifetime(args);
+        }
 
         // Avalonia configuration, don't remove; also used by visual designer.
         public static AppBuilder BuildAvaloniaApp()
@@ -20,5 +30,7 @@ namespace TrueText
                 .WithInterFont()
                 .LogToTrace()
                 .UseReactiveUI();
+
+
     }
 }
