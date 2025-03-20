@@ -16,6 +16,11 @@ namespace TrueText.Data
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite("Data Source=TrueText.db");
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TrueText.Models.Device>().ToTable("Devices");
+        }
+
         public static void AddDevice(TrueText.Models.Device device)
         {
             using (var db = new AppDbContext())

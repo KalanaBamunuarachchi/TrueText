@@ -21,7 +21,7 @@
       <Guid>94a0e92d-43c0-494e-ac29-fd45948a5221</Guid>
       <Lcid>0</Lcid>
       <Isolated>false</Isolated>
-      <EmbedInteropTypes>true</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
 

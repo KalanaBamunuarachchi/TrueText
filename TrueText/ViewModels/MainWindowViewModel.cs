@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Diagnostics;
+using TrueText.Data;
 
 namespace TrueText.ViewModels
 {
@@ -15,15 +16,15 @@ namespace TrueText.ViewModels
         private ViewModelBase _currentPage;
 
         private readonly DashboardPageViewModel _dashboardPageViewModel = new();
-        private readonly ScanPageViewModel _scanPageViewModel = new();
+        private readonly ScanPageViewModel _scanPageViewModel;
         private readonly DevicesPageViewModel _devicesPageViewModel = new();
         private readonly HelpPageViewModel _helpPageViewModel = new();
         private readonly SettingsPageViewModel _settingsPageViewModel = new();
 
-        
-
         public MainWindowViewModel()
         {
+            _scanPageViewModel = new ScanPageViewModel();
+
             NavigateToDashboardCommand = new RelayCommand(NavigateToDashboard, () => true);
             NavigateToScanPageCommand = new RelayCommand(NavigateToScanPage, () => true);
             NavigateToDevicesPageCommand = new RelayCommand(NavigateToDevicesPage, () => true);
@@ -35,17 +36,12 @@ namespace TrueText.ViewModels
             Debug.WriteLine($"NavigateToDevicesPageCommand: {NavigateToDevicesPageCommand != null}");
             Debug.WriteLine($"NavigateToHelpPageCommand: {NavigateToHelpPageCommand != null}");
             Debug.WriteLine($"NavigateToSettingsPageCommand: {NavigateToSettingsPageCommand != null}");
-
-
         }
 
         public IRelayCommand NavigateToDashboardCommand { get; }
         public IRelayCommand NavigateToScanPageCommand { get; }
-
         public IRelayCommand NavigateToDevicesPageCommand { get; }
-
         public IRelayCommand NavigateToHelpPageCommand { get; }
-
         public IRelayCommand NavigateToSettingsPageCommand { get; }
 
         public void NavigateToDashboard()
@@ -72,6 +68,5 @@ namespace TrueText.ViewModels
         {
             CurrentPage = _settingsPageViewModel;
         }
-
     }
 }
