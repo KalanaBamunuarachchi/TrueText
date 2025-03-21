@@ -4,7 +4,7 @@
 	<Design.PreviewWith>
 		<Border Padding="20" Background="{DynamicResource ResourceKey=SecondaryBackground}" Width="225" >
 
-			<Button Classes="Nav-Bar"  FontWeight="Medium" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left" >
+			<Button Classes="Test"  FontWeight="Medium" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left" >
 				<StackPanel Orientation="Horizontal">
 					<Label  Classes="icon"   Content="&#xE464;" ></Label>
 					<Label Content="Dashboard" FontSize="16" ></Label>
@@ -48,11 +48,16 @@
 	</Style>
 	
 	<!-- Fonts -->
-	<Style Selector="Button.special-button">
-		<Setter Property="Theme" Value="{DynamicResource ResourceKey=PrimaryButtonHover}"/>
-		<Setter Property="Foreground" Value="White"/>
-		<Setter Property="Background" Value="Red"/>
-		<Setter Property="CornerRadius" Value="8"/>
+	<Style Selector="Button.Test">
+		<Setter	Property="Background" Value="{DynamicResource ResourceKey=SecondaryButton}"></Setter>
+		<Setter	Property="Foreground" Value="{DynamicResource ResourceKey=SecondaryText}"></Setter>
+		<Setter Property="CornerRadius" Value="8"></Setter>
+		<Setter	Property="FontWeight" Value="Bold"> </Setter>
+	</Style>
+	<Style Selector="Button.Test:pointerover /template/ContentPresenter">
+		<Setter	Property="Foreground" Value="{DynamicResource ResourceKey=SecondaryText}"></Setter>
+		<Setter	Property="Background" Value="{DynamicResource ResourceKey=SecondaryButtonHover}"></Setter>
+		<Setter Property="CornerRadius" Value="8"></Setter>
 	</Style>
 
 

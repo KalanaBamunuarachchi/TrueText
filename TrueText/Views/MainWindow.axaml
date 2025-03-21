@@ -12,7 +12,9 @@
         Icon="/Assets/TrueTextLogo.ico"
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"
-        WindowState="Maximized"
+		Height="920"
+		Width="1440"
+        
         Title="TrueText"
 		RequestedThemeVariant="Light">
     <Design.DataContext>

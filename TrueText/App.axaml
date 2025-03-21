@@ -25,8 +25,11 @@
 		<SolidColorBrush x:Key="PrimaryBackground">#FFFFFF</SolidColorBrush>
 		<SolidColorBrush x:Key="SecondaryBackground">#F3F3F3</SolidColorBrush>
 		<SolidColorBrush x:Key="PrimaryText">#000000</SolidColorBrush>
+		<SolidColorBrush x:Key="SecondaryText">#ffffff</SolidColorBrush>
 		<SolidColorBrush x:Key="PrimaryTextHover">#5955FF</SolidColorBrush>
 		<SolidColorBrush x:Key="PrimaryButtonHover">#CDCCFF</SolidColorBrush>
+		<SolidColorBrush x:Key="SecondaryButtonHover">#000000</SolidColorBrush>
+		<SolidColorBrush x:Key="SecondaryButton">#5955FF</SolidColorBrush>
 
 		<!-- Fonts -->
 		<FontFamily x:Key="">/Assets/Fonts/Inter-VariableFont_opsz,wght.ttf#Inter</FontFamily>
