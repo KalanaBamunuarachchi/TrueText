@@ -4,14 +4,32 @@
 	<Design.PreviewWith>
 		<Border Padding="20" Background="{DynamicResource ResourceKey=SecondaryBackground}" Width="225" >
 
-			<Button Classes="Test"  FontWeight="Medium" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left" >
+			<!-- <Button Classes="Test"  FontWeight="Medium" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Left" >
 				<StackPanel Orientation="Horizontal">
 					<Label  Classes="icon"   Content="&#xE464;" ></Label>
 					<Label Content="Dashboard" FontSize="16" ></Label>
 				</StackPanel>
-			</Button>
-			
-			
+			</Button> -->
+
+			<Border Padding="20" Background="White">
+				<StackPanel>
+					<TextBlock Text="TagLabel Test" FontWeight="Bold" Margin="0,0,0,10"/>
+
+					<Label  Classes=" Green Circle" Theme="{DynamicResource TagLabel  }">
+						Online
+					</Label>
+
+					<Label  Classes=" Red Circle " Theme="{DynamicResource TagLabel  }"  Margin="0,10,0,0">
+						Offline
+					</Label>
+
+					<Label  Margin="0,10,0,0">Online</Label>
+					<Label Classes="offline" Margin="0,10,0,0">Offline</Label>
+				</StackPanel>
+				
+			</Border>
+
+
 
 
 
@@ -58,6 +76,23 @@
 		<Setter	Property="Foreground" Value="{DynamicResource ResourceKey=SecondaryText}"></Setter>
 		<Setter	Property="Background" Value="{DynamicResource ResourceKey=SecondaryButtonHover}"></Setter>
 		<Setter Property="CornerRadius" Value="8"></Setter>
+	</Style>
+	
+	<!-- Status Changes lable styles -->
+
+
+	<Style Selector="Label[Tag='Connected']">
+		<Setter	Property="Theme" Value="{DynamicResource ResourceKey=TagLabel}"></Setter>
+		<Setter Property="Background" Value="#e1f3e3"></Setter>
+		<Setter Property="Foreground" Value="#356f3d"></Setter>
+		<Setter Property="CornerRadius" Value="10"></Setter>
+	</Style>
+
+	<Style Selector="Label.offline">
+		<Setter	Property="Theme" Value="{DynamicResource ResourceKey=TagLabel}"></Setter>
+		<Setter Property="Background" Value="#fee1dd"></Setter>
+		<Setter Property="Foreground" Value="#8d0f1b"></Setter>
+		<Setter Property="CornerRadius" Value="10"></Setter>
 	</Style>
 
 

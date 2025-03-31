@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="TrueText.App"
              xmlns:local="using:TrueText"
+			 xmlns:converters="clr-namespace:TrueText.Converters;assembly=TrueText"
 			 xmlns:semi="https://irihi.tech/semi"
              RequestedThemeVariant="Default">
 	
@@ -36,6 +37,13 @@
 		<FontFamily x:Key="RedHatDisplayBold">/Assets/Fonts/RedHatDisplay-Bold.ttf#Red Hat Display</FontFamily>
 		<FontFamily x:Key="Phosphor">/Assets/Fonts/Phosphor.ttf#Phosphor</FontFamily>
 		
+		
+
+		<converters:StatusClassConverter x:Key="StatusClassConverter"/>
+
+
+
+
 
 
 	</Application.Resources>

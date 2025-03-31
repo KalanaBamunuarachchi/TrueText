@@ -35,6 +35,11 @@
 			<Button  Content="Scan" Width="200" Height="20" 
                     HorizontalAlignment="Center" Classes="Test"
                     Command="{Binding ScanCommand}" />
+			<Label Classes="TagLabel Success Circle Large">
+				Connected
+			</Label>
+
+
 		</StackPanel>
 	</Grid>
 </UserControl>
