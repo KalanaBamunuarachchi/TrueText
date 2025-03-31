@@ -12,8 +12,7 @@
         Icon="/Assets/TrueTextLogo.ico"
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"
-		Height="920"
-		Width="1440"
+		WindowState="Normal"
         
         Title="TrueText"
 		RequestedThemeVariant="Light">
