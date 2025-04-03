@@ -12,5 +12,7 @@ namespace TrueText.Models
         public int Id { get; set; } 
         public string Name { get; set; }
         public string Status { get; set; }
+
+        public string StatusStyle => Status == "Connected" ? "online" : "offline";
     }
 }

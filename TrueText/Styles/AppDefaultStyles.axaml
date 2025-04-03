@@ -23,7 +23,7 @@
 						Offline
 					</Label>
 
-					<Label  Margin="0,10,0,0">Online</Label>
+					<Label Classes="online"  Margin="0,10,0,0">Online</Label>
 					<Label Classes="offline" Margin="0,10,0,0">Offline</Label>
 				</StackPanel>
 				
@@ -77,11 +77,18 @@
 		<Setter	Property="Background" Value="{DynamicResource ResourceKey=SecondaryButtonHover}"></Setter>
 		<Setter Property="CornerRadius" Value="8"></Setter>
 	</Style>
+
 	
+	<!-- Purple -->
+
+
+
+
+
 	<!-- Status Changes lable styles -->
 
 
-	<Style Selector="Label[Tag='Connected']">
+	<Style Selector="Label.online">
 		<Setter	Property="Theme" Value="{DynamicResource ResourceKey=TagLabel}"></Setter>
 		<Setter Property="Background" Value="#e1f3e3"></Setter>
 		<Setter Property="Foreground" Value="#356f3d"></Setter>

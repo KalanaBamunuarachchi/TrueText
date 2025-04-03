@@ -31,6 +31,8 @@
 		<SolidColorBrush x:Key="PrimaryButtonHover">#CDCCFF</SolidColorBrush>
 		<SolidColorBrush x:Key="SecondaryButtonHover">#000000</SolidColorBrush>
 		<SolidColorBrush x:Key="SecondaryButton">#5955FF</SolidColorBrush>
+		<SolidColorBrush x:Key="SystemAccentColor">#5955FF</SolidColorBrush>
+
 
 		<!-- Fonts -->
 		<FontFamily x:Key="">/Assets/Fonts/Inter-VariableFont_opsz,wght.ttf#Inter</FontFamily>
