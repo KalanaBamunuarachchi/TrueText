@@ -4,7 +4,6 @@ using Avalonia.Markup.Xaml;
 using System.Threading.Tasks;
 using TrueText.ViewModels;
 using TrueText.Views;
-
 namespace TrueText
 {
     public partial class App : Application
@@ -12,7 +11,8 @@ namespace TrueText
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
-            DataTemplates.Add(new ViewLocator());   
+            DataTemplates.Add(new ViewLocator());
+           
         }
 
         public override async void OnFrameworkInitializationCompleted()

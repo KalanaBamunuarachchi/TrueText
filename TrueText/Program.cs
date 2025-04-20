@@ -2,6 +2,7 @@
 using Avalonia;
 using Avalonia.ReactiveUI;
 using TrueText.Data;
+using QuestPDF.Infrastructure;
 
 namespace TrueText
 {
@@ -13,9 +14,11 @@ namespace TrueText
         [STAThread]
         public static void Main(string[] args)
         {
+            QuestPDF.Settings.License = LicenseType.Community;
             // Initialize Database Here
             using (var db = new AppDbContext())
             {
+               
                 db.Database.EnsureCreated(); 
             }
 

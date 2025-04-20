@@ -28,8 +28,8 @@
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.2.7" />
     <PackageReference Include="Avalonia.Desktop" Version="11.2.7" />
-    <PackageReference Include="Avalonia.Svg" Version="11.2.6.1" />
-    <PackageReference Include="Avalonia.Svg.Skia" Version="11.2.6.1" />
+    <PackageReference Include="Avalonia.Svg" Version="11.2.7.1" />
+    <PackageReference Include="Avalonia.Svg.Skia" Version="11.2.7.1" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.7" />
     <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.7" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
@@ -46,7 +46,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="NAPS2.Sdk" Version="1.1.6" />
+    <PackageReference Include="QuestPDF" Version="2025.4.0" />
     <PackageReference Include="Semi.Avalonia" Version="11.2.1.6" />
     <PackageReference Include="Semi.Avalonia.DataGrid" Version="11.2.1.6" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.7" />
   </ItemGroup>
 </Project>
