@@ -11,6 +11,7 @@
   <ItemGroup>
     <Folder Include="Assets\Fonts\" />
     <AvaloniaResource Include="Assets\**" />
+    <None Remove="Tessdata\eng.traineddata" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,16 +27,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="11.2.7" />
-    <PackageReference Include="Avalonia.Desktop" Version="11.2.7" />
+    <Content Include="Tessdata\eng.traineddata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.2.8" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.2.8" />
     <PackageReference Include="Avalonia.Svg" Version="11.2.7.1" />
     <PackageReference Include="Avalonia.Svg.Skia" Version="11.2.7.1" />
-    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.7" />
-    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.7" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.8" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.8" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.2.7" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="11.2.7" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.2.8" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.2.8" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="3.3.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.12.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -47,8 +56,9 @@
     </PackageReference>
     <PackageReference Include="NAPS2.Sdk" Version="1.1.6" />
     <PackageReference Include="QuestPDF" Version="2025.4.0" />
-    <PackageReference Include="Semi.Avalonia" Version="11.2.1.6" />
-    <PackageReference Include="Semi.Avalonia.DataGrid" Version="11.2.1.6" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.7" />
+    <PackageReference Include="Semi.Avalonia" Version="11.2.1.7" />
+    <PackageReference Include="Semi.Avalonia.DataGrid" Version="11.2.1.7" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.8" />
+    <PackageReference Include="Tesseract" Version="5.2.0" />
   </ItemGroup>
 </Project>

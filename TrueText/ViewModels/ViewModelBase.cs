@@ -6,9 +6,10 @@ namespace TrueText.ViewModels
 {
     
 
-    public class ViewModelBase : ObservableObject
+public class ViewModelBase : ObservableObject
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        // Use the 'new' keyword to explicitly hide the inherited member
+        public new event PropertyChangedEventHandler? PropertyChanged;
 
         protected void OnPropertyChanged(string propertyName)
         {

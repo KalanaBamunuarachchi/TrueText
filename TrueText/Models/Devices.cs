@@ -9,10 +9,9 @@ namespace TrueText.Models
 {
     public class Device
     {
-        public int Id { get; set; } 
-        public string Name { get; set; }
-        public string Status { get; set; }
-
-        public string StatusStyle => Status == "Connected" ? "online" : "offline";
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty; // Ensure Name is initialized
+        public string Status { get; set; } = string.Empty; // Ensure Status is initialized
+        
     }
 }

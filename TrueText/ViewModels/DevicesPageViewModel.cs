@@ -14,7 +14,7 @@ namespace TrueText.ViewModels
 {
     public class DevicesPageViewModel : ViewModelBase
     {
-        private ObservableCollection<TrueText.Models.Device> _devices;
+        private ObservableCollection<TrueText.Models.Device> _devices = new ObservableCollection<TrueText.Models.Device>();
         public ObservableCollection<TrueText.Models.Device> Devices
         {
             get => _devices;
@@ -26,7 +26,7 @@ namespace TrueText.ViewModels
         }
 
         public ICommand AddDeviceCommand { get; }
-        private Timer _devicePollingTimer;
+        private Timer _devicePollingTimer = new Timer();
 
         public DevicesPageViewModel()
         {
@@ -46,10 +46,9 @@ namespace TrueText.ViewModels
                 {
                     foreach (DeviceInfo deviceInfo in deviceManager.DeviceInfos.Cast<DeviceInfo>())
                     {
-                        if (deviceInfo.Type == WiaDeviceType.ScannerDeviceType)
+                        string? deviceName = deviceInfo.Properties["Name"]?.get_Value()?.ToString();
+                        if (deviceName != null)
                         {
-                            string deviceName = deviceInfo.Properties["Name"].get_Value().ToString();
-
                             if (!db.Devices.Any(d => d.Name == deviceName))
                             {
                                 var device = new TrueText.Models.Device

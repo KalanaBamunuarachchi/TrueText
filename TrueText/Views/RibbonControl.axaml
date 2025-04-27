@@ -2,22 +2,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:vm="clr-namespace:TrueText.ViewModels;assembly=TrueText"
-             mc:Ignorable="d" 
+             xmlns:vm="clr-namespace:TrueText.ViewModels"
+             mc:Ignorable="d"
              x:Class="TrueText.RibbonControl"
-			 x:DataType="vm:RibbonControlViewModel" >
+             x:DataType="vm:RibbonControlViewModel">
 
-	<Border CornerRadius="8" Background="#F1F1F1" Height="40" >
-		<Grid>
-			<TextBlock Text="{Binding Greeting}"
+    <Border CornerRadius="8" Background="#F1F1F1" Height="40">
+        <Grid>
+            <TextBlock Text="{Binding Greeting}"
                        VerticalAlignment="Center"
                        Margin="10,0,0,0"
                        FontSize="16"
-                       FontWeight=""
-					   Foreground="#5955FF"
-					   FontFamily="{DynamicResource ResourceKey=RedHatDisplayBold}"/>
+                       Foreground="#5955FF"
+                       FontFamily="{DynamicResource ResourceKey=RedHatDisplayBold}"/>
+        </Grid>
+    </Border>
 
-		</Grid>
-	</Border>
- 
 </UserControl>
