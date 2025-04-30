@@ -12,7 +12,7 @@ namespace TrueText
         {
             AvaloniaXamlLoader.Load(this);
             DataTemplates.Add(new ViewLocator());
-           
+
         }
 
         public override async void OnFrameworkInitializationCompleted()
@@ -21,14 +21,13 @@ namespace TrueText
             {
                 var splashWindow = new SplashScreen();
                 splashWindow.Show();
-                desktop.MainWindow  = splashWindow;
+                desktop.MainWindow = splashWindow;
 
                 try
                 {
                     await Task.Delay(3000);
-
                 }
-                catch 
+                catch
                 {
                     splashWindow.Close();
                     return;
@@ -36,12 +35,11 @@ namespace TrueText
 
                 var mainWindow = new MainWindow
                 {
-                    DataContext = new MainWindowViewModel()
+                    DataContext = new MainWindowViewModel() // Use parameterless constructor
                 };
 
                 mainWindow.Show();
                 splashWindow.Close();
-                
             }
 
             base.OnFrameworkInitializationCompleted();

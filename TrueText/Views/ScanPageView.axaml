@@ -147,7 +147,12 @@
 								HorizontalAlignment="Stretch"
 								Background="#d3d3ff"
 								Margin="0,10,0,0"/>
-						<ProgressBar/>
+						<ProgressBar
+							Minimum="0"
+							Maximum="1"
+							Value="{Binding OcrProgress}"
+							IsVisible="{Binding IsOcrInProgress}"/>
+
 
 						<Button Content="Export As"
 								Command="{Binding ExportOcrCommand}"

@@ -7,6 +7,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Diagnostics;
 using TrueText.Data;
+using Avalonia.Controls;
+using System.Reactive;
 
 namespace TrueText.ViewModels
 {
@@ -20,6 +22,11 @@ namespace TrueText.ViewModels
         private readonly DevicesPageViewModel _devicesPageViewModel = new();
         private readonly HelpPageViewModel _helpPageViewModel = new();
         private readonly SettingsPageViewModel _settingsPageViewModel = new();
+
+        
+
+
+       
 
         public MainWindowViewModel()
         {
@@ -38,6 +45,13 @@ namespace TrueText.ViewModels
             Debug.WriteLine($"NavigateToDevicesPageCommand: {NavigateToDevicesPageCommand != null}");
             Debug.WriteLine($"NavigateToHelpPageCommand: {NavigateToHelpPageCommand != null}");
             Debug.WriteLine($"NavigateToSettingsPageCommand: {NavigateToSettingsPageCommand != null}");
+
+            
+
+
+
+
+
         }
 
         // Add default initializations for the commands to avoid nullability issues.
@@ -71,5 +85,7 @@ namespace TrueText.ViewModels
         {
             CurrentPage = _settingsPageViewModel;
         }
+
+        
     }
 }
