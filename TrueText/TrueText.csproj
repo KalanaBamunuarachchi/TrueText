@@ -12,6 +12,7 @@
     <Folder Include="Assets\Fonts\" />
     <AvaloniaResource Include="Assets\**" />
     <None Remove="Tessdata\eng.traineddata" />
+    <None Remove="Tessdata\sin.traineddata" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +29,9 @@
 
   <ItemGroup>
     <Content Include="Tessdata\eng.traineddata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tessdata\sin.traineddata">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

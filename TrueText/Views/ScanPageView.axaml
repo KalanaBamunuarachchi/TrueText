@@ -133,12 +133,11 @@
 
 						<StackPanel Orientation="Horizontal" Spacing="10">
 							<TextBlock Text="Language:" Width="100" VerticalAlignment="Center"/>
-							<ComboBox Width="200">
-								<ComboBoxItem Content="English"/>
-								<ComboBoxItem Content="Sinhala"/>
-								<ComboBoxItem Content="Tamil"/>
-								<ComboBoxItem Content="Arabic"/>
-							</ComboBox>
+							<ComboBox Width="200"
+									  ItemsSource="{Binding OcrLanguages}"
+									  SelectedItem="{Binding SelectedOcrLanguage}" />
+								
+							
 						</StackPanel>
 
 						<Button Content="Proceed OCR"

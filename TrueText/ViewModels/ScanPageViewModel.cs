@@ -210,7 +210,13 @@ namespace TrueText.ViewModels
             {
                 var tessData = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tessdata");
                 var sb = new StringBuilder();
-                using var engine = new TesseractEngine(tessData, "eng", EngineMode.Default);
+                string lang = SelectedOcrLanguage switch
+                {
+                    "Sinhala" => "sin",
+                    _ => "eng"
+                };
+                using var engine = new TesseractEngine(tessData, lang, EngineMode.Default);
+
 
                 int total = ScannedPages.Count; // Use the generated property
                 for (int i = 0; i < total; i++)
@@ -305,7 +311,7 @@ namespace TrueText.ViewModels
         {
             if (!ScannedPages.Any()) return; // Use the generated property instead of the field
             ScannedPages.RemoveAt(CurrentPageIndex); // Use the generated property instead of the field
-            CurrentPageIndex = Math.Clamp(CurrentPageIndex, 0, ScannedPages.Count - 1); // Use the generated property instead of the field
+            CurrentPageIndex = Math.Clamp(CurrentPageIndex, 0, ScannedPages.Count - 1); 
             UpdateCurrentPage();
             ExportCommand.NotifyCanExecuteChanged();
             DeletePageCommand.NotifyCanExecuteChanged();
