@@ -64,6 +64,22 @@
 		<Setter Property="FontFamily" Value="{DynamicResource ResourceKey=Phosphor}"></Setter>
 		<Setter	Property="Margin" Value="0 5 5 0"></Setter>
 	</Style>
+
+	<Style Selector="Button.Submit-Button">
+		<Setter Property="Background" Value="#2E8B57" />
+		<Setter Property="Foreground" Value="White" />
+		<Setter Property="FontWeight" Value="SemiBold" />
+		<Setter Property="CornerRadius" Value="6" />
+		<Setter Property="Padding" Value="10,6" />
+		<Setter Property="FontSize" Value="14" />
+	</Style>
+
+	<!-- Hover Style -->
+	<Style Selector="Button.Submit-Button:pointerover /template/ContentPresenter">
+		<Setter Property="Background" Value="#3CB371" />
+		<Setter Property="Foreground" Value="White" />
+		<Setter Property="CornerRadius" Value="6" />
+	</Style>
 	
 	<!-- Fonts -->
 	<Style Selector="Button.Test">

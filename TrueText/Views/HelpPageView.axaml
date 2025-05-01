@@ -2,7 +2,62 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="TrueText.Views.HelpPageView">
-	Welcome to Help
+             mc:Ignorable="d" 
+			 xmlns:local="clr-namespace:TrueText"
+             xmlns:vm="clr-namespace:TrueText.ViewModels"
+             x:Class="TrueText.Views.HelpPageView"
+			 x:DataType="vm:HelpPageViewModel">
+
+	<Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
+		<!-- Ribbon -->
+		<StackPanel Grid.Row="0" Margin="10">
+			<local:RibbonControl/>
+		</StackPanel>
+
+		<!-- FAQ Expanders -->
+		<Expander Header="How do I start scanning a document?" Grid.Row="1" Margin="10" IsExpanded="False">
+			<TextBlock TextWrapping="Wrap">
+				Go to the Scan tab, choose your scanner from the dropdown, and click the Scan button. Make sure your device is connected and powered on.
+			</TextBlock>
+		</Expander>
+
+		<Expander Header="Can I scan documents in languages other than English?" Grid.Row="2" Margin="10" IsExpanded="False">
+			<TextBlock TextWrapping="Wrap">
+				Yes. You can select the language (English or Sinhala) from the OCR tab before starting OCR processing.
+			</TextBlock>
+		</Expander>
+
+		<Expander Header="Why is the exported Word document missing line breaks or formatting?" Grid.Row="3" Margin="10" IsExpanded="False">
+			<TextBlock TextWrapping="Wrap">
+				OCR accuracy depends on scan clarity. Blurred or skewed images can confuse layout detection. Use 300 DPI or higher for better formatting.
+			</TextBlock>
+		</Expander>
+
+		<Expander Header="Why isn't my device showing up in the Source list?" Grid.Row="4" Margin="10" IsExpanded="False">
+			<TextBlock TextWrapping="Wrap">
+				If your scanner isn’t listed, it may not be added yet. Go to the Devices page and add your scanner manually. Once added, it will appear in the Source dropdown.
+			</TextBlock>
+		</Expander>
+
+		<!-- Feedback Form -->
+		<StackPanel Grid.Row="5" Margin="10" Spacing="8">
+			<TextBlock Text="Let us know your concern" FontWeight="Bold" Margin="10"/>
+			<ComboBox Width="400"
+					  Margin="10"
+					  PlaceholderText="Select a feedback category"
+					  ItemsSource="{Binding FeedbackCategories}"
+					  SelectedItem="{Binding SelectedCategory}" />
+			<TextBox Classes="TextArea" TextWrapping="Wrap" Width="400" Height="100" HorizontalAlignment="Left" Margin="10"
+					 Text="{Binding FeedbackMessage}" Watermark="Type your feedback here..." />
+			<Button Content="Send Report"
+					Margin="10"
+					Command="{Binding SubmitFeedbackCommand}"
+					Classes="Submit-Button"
+					Width="400"  CornerRadius="4" HorizontalAlignment="Left"/>
+		</StackPanel>
+	</Grid>
+
+
 </UserControl>
+
+
