@@ -13,9 +13,7 @@
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"
 		WindowState="Normal"
-        
-        Title="TrueText"
-		RequestedThemeVariant="Light">
+        Title="TrueText">
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>

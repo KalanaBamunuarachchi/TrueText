@@ -2,7 +2,128 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="TrueText.Views.DashboardPageView">
-	Welcome to Dashboard!
+             mc:Ignorable="d"
+			 xmlns:view="clr-namespace:TrueText.Views"
+			 xmlns:local="clr-namespace:TrueText"
+             xmlns:vm="clr-namespace:TrueText.ViewModels"
+             x:Class="TrueText.Views.DashboardPageView"
+			 x:DataType="vm:DashboardPageViewModel"
+			 xmlns:models="clr-namespace:TrueText.Models">
+
+	<Grid RowDefinitions="Auto, Auto, *" ColumnDefinitions="*">
+		<!-- Ribbon -->
+		<StackPanel Grid.Row="0" Margin="10">
+			<local:RibbonControl />
+		</StackPanel>
+
+		<!-- Middle Content -->
+		<Grid Grid.Row="1" ColumnDefinitions="300, *"  >
+			<!-- Scan Box -->
+			<Border Grid.Column="0"
+					Width="300" Height="300"
+					CornerRadius="16"
+					Background="White"
+					BorderBrush="LightGray"
+					BorderThickness="1"
+					Padding="20"
+					Margin="10">
+				<Button Content="SCAN"
+						Width="150" Height="150"
+						FontWeight="Bold"
+						Background="White"
+						Foreground="Black"
+						BorderBrush="#7B61FF"
+						BorderThickness="4"
+						CornerRadius="80"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"/>
+			</Border>
+
+
+			<!-- Devices List -->
+			<Border Grid.Column="1"
+              Background="White"
+              BorderBrush="LightGray"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16"
+			  Margin="10">
+				<StackPanel Spacing="12">
+					<Border Background="#E0E0FF" CornerRadius="8" Padding="8,4" HorizontalAlignment="Stretch" Margin="0,0,0,8">
+						<TextBlock
+						  Text="Connected Devices"
+						  Foreground="#5A3DFF"
+						  FontSize="14"
+						  FontWeight="SemiBold"
+						  VerticalAlignment="Center"/>
+					</Border>
+
+
+					<ItemsControl ItemsSource="{Binding Devices}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate x:DataType="models:Device">
+								<Border Padding="8">
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<!-- auto-sized for icon+name -->
+											<ColumnDefinition Width="Auto"/>
+											<!-- star-sized to take all the remaining space -->
+											<ColumnDefinition Width="*"/>
+											<!-- auto-sized for the status text -->
+											<ColumnDefinition Width="Auto"/>
+										</Grid.ColumnDefinitions>
+
+										<!-- Icon + Name on the left -->
+										<StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="4">
+											<Label Classes="icon" Content="&#xE3DC;"/>
+											<TextBlock Text="{Binding Name}" FontSize="12" VerticalAlignment="Center"/>
+										</StackPanel>
+
+										<!-- empty spacer in the middle just to push the right column out -->
+										<Border Grid.Column="1"/>
+
+										<!-- Status on the right -->
+										<TextBlock
+										  Grid.Column="2"
+										  Text="{Binding Status}"
+										  FontSize="12"
+										  Foreground="Gray"
+										  VerticalAlignment="Center"
+										  HorizontalAlignment="Right"/>
+									</Grid>
+								</Border>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>	
+				</StackPanel>
+			</Border>
+		</Grid>
+
+		<!-- Recent Scans -->
+		<Border Grid.Row="2" Margin="10" Padding="20" CornerRadius="16" BorderBrush="LightGray" BorderThickness="1" Background="White">
+			<StackPanel Spacing="10">
+				<Border Background="#E0E0FF" CornerRadius="8" Padding="8,4" HorizontalAlignment="Stretch" Margin="0,0,0,8">
+					<TextBlock
+					  Text="Recent Scans"
+					  Foreground="#5A3DFF"
+					  FontSize="14"
+					  FontWeight="SemiBold"
+					  VerticalAlignment="Center"/>
+				</Border>
+				<ItemsControl ItemsSource="{Binding RecentScans}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate x:DataType="models:RecentScan">
+							<Grid ColumnDefinitions="2*,Auto,Auto" Margin="0,4">
+								<TextBlock Text="{Binding Name}" />
+								<TextBlock Text="{Binding Type}" Grid.Column="1" Margin="12,0" />
+								
+							</Grid>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</StackPanel>
+		</Border>
+	</Grid>
+	
+	
 </UserControl>

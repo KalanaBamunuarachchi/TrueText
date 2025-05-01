@@ -38,6 +38,9 @@ namespace TrueText
                     DataContext = new MainWindowViewModel() // Use parameterless constructor
                 };
 
+                
+
+
                 mainWindow.Show();
                 splashWindow.Close();
             }
