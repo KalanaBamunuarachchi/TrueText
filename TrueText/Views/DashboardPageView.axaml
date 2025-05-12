@@ -22,7 +22,7 @@
 			<Border Grid.Column="0"
 					Width="300" Height="300"
 					CornerRadius="16"
-					Background="White"
+					Background="{DynamicResource PrimaryBackground}"
 					BorderBrush="LightGray"
 					BorderThickness="1"
 					Padding="20"
@@ -42,7 +42,7 @@
 
 			<!-- Devices List -->
 			<Border Grid.Column="1"
-              Background="White"
+              Background="{DynamicResource PrimaryBackground}"
               BorderBrush="LightGray"
               BorderThickness="1"
               CornerRadius="8"

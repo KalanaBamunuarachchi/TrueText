@@ -23,15 +23,40 @@
 		
     </Application.Styles>
 	<Application.Resources>
-		<SolidColorBrush x:Key="PrimaryBackground">#FFFFFF</SolidColorBrush>
-		<SolidColorBrush x:Key="SecondaryBackground">#F3F3F3</SolidColorBrush>
-		<SolidColorBrush x:Key="PrimaryText">#000000</SolidColorBrush>
-		<SolidColorBrush x:Key="SecondaryText">#ffffff</SolidColorBrush>
-		<SolidColorBrush x:Key="PrimaryTextHover">#5955FF</SolidColorBrush>
-		<SolidColorBrush x:Key="PrimaryButtonHover">#CDCCFF</SolidColorBrush>
-		<SolidColorBrush x:Key="SecondaryButtonHover">#000000</SolidColorBrush>
-		<SolidColorBrush x:Key="SecondaryButton">#5955FF</SolidColorBrush>
-		<SolidColorBrush x:Key="SystemAccentColor">#5955FF</SolidColorBrush>
+		<ResourceDictionary>
+			<ResourceDictionary.ThemeDictionaries>
+				<ResourceDictionary x:Key="Light">
+					<SolidColorBrush x:Key="PrimaryBackground">#FFFFFF</SolidColorBrush>
+					<SolidColorBrush x:Key="SecondaryBackground">#F3F3F3</SolidColorBrush>
+					
+					<SolidColorBrush x:Key="PrimaryText">#000000</SolidColorBrush>
+					<SolidColorBrush x:Key="SecondaryText">#ffffff</SolidColorBrush>
+					<SolidColorBrush x:Key="PrimaryTextHover">#5955FF</SolidColorBrush>
+					<SolidColorBrush x:Key="PrimaryButtonHover">#CDCCFF</SolidColorBrush>
+					<SolidColorBrush x:Key="SecondaryButtonHover">#000000</SolidColorBrush>
+					<SolidColorBrush x:Key="SecondaryButton">#5955FF</SolidColorBrush>
+					<SolidColorBrush x:Key="TertiaryButton">#d3d3ff</SolidColorBrush>
+					<SolidColorBrush x:Key="TertiaryButtonHover">#b0b0ff</SolidColorBrush>
+					<SolidColorBrush x:Key="TertiaryText">#2a2a2a</SolidColorBrush>
+					<SolidColorBrush x:Key="SystemAccentColor">#5955FF</SolidColorBrush>
+				</ResourceDictionary>
+
+				<ResourceDictionary x:Key="Dark">
+					<SolidColorBrush x:Key="PrimaryBackground">#1E1E1E</SolidColorBrush>
+					<SolidColorBrush x:Key="SecondaryBackground">#2D2D2D</SolidColorBrush>
+					<SolidColorBrush x:Key="PrimaryText">#FFFFFF</SolidColorBrush>
+					<SolidColorBrush x:Key="SecondaryText">#AAAAAA</SolidColorBrush>
+					<SolidColorBrush x:Key="PrimaryTextHover">#9EA1FF</SolidColorBrush>
+					<SolidColorBrush x:Key="PrimaryButtonHover">#3A3A5C</SolidColorBrush>
+					<SolidColorBrush x:Key="SecondaryButtonHover">#FFFFFF</SolidColorBrush>
+					<SolidColorBrush x:Key="SecondaryButton">#9EA1FF</SolidColorBrush>
+					<SolidColorBrush x:Key="TertiaryButton">#8888ff</SolidColorBrush>
+					<SolidColorBrush x:Key="TertiaryText">#ffffff</SolidColorBrush>
+					<SolidColorBrush x:Key="TertiaryButtonHover">#a0a0ff</SolidColorBrush>
+					<SolidColorBrush x:Key="SystemAccentColor">#9EA1FF</SolidColorBrush>
+				</ResourceDictionary>
+			</ResourceDictionary.ThemeDictionaries>
+		</ResourceDictionary>
 
 
 		<!-- Fonts -->
