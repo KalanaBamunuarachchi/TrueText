@@ -19,7 +19,7 @@ namespace TrueText.ViewModels
 
         public ObservableCollection<RecentScan> RecentScans { get; } = new();
 
-        // command to open the folder where the file lives
+       
         public IRelayCommand<RecentScan> OpenFileLocationCommand { get; }
 
         private readonly string _exportDir =
@@ -49,7 +49,7 @@ namespace TrueText.ViewModels
             if (!Directory.Exists(_exportDir))
                 return;
 
-            // pick the 5 most-recently modified files
+            
             var files = Directory
                 .GetFiles(_exportDir)
                 .OrderByDescending(f => File.GetLastWriteTimeUtc(f))
@@ -69,7 +69,7 @@ namespace TrueText.ViewModels
         private void ShowInExplorer(RecentScan? scan)
         {
             if (scan == null) return;
-            // open Windows Explorer at the file’s folder, select the file
+            
             Process.Start(new ProcessStartInfo
             {
                 FileName = "explorer.exe",

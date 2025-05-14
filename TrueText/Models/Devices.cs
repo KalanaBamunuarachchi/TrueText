@@ -10,8 +10,8 @@ namespace TrueText.Models
     public class Device
     {
         public int Id { get; set; }
-        public string Name { get; set; } = string.Empty; // Ensure Name is initialized
-        public string Status { get; set; } = string.Empty; // Ensure Status is initialized
+        public string Name { get; set; } = string.Empty; 
+        public string Status { get; set; } = string.Empty; 
         
     }
 }

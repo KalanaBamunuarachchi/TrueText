@@ -65,24 +65,22 @@
 								<Border Padding="8">
 									<Grid>
 										<Grid.ColumnDefinitions>
-											<!-- auto-sized for icon+name -->
+											
 											<ColumnDefinition Width="Auto"/>
-											<!-- star-sized to take all the remaining space -->
 											<ColumnDefinition Width="*"/>
-											<!-- auto-sized for the status text -->
 											<ColumnDefinition Width="Auto"/>
 										</Grid.ColumnDefinitions>
 
-										<!-- Icon + Name on the left -->
+										
 										<StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="4">
 											<Label Classes="icon" Content="&#xE3DC;"/>
 											<TextBlock Text="{Binding Name}" FontSize="12" VerticalAlignment="Center"/>
 										</StackPanel>
 
-										<!-- empty spacer in the middle just to push the right column out -->
+										
 										<Border Grid.Column="1"/>
 
-										<!-- Status on the right -->
+										
 										<TextBlock
 										  Grid.Column="2"
 										  Text="{Binding Status}"
@@ -100,7 +98,7 @@
 		</Grid>
 
 		<!-- Recent Scans -->
-		<Border Grid.Row="2" Margin="10" Padding="20" CornerRadius="16" BorderBrush="LightGray" BorderThickness="1" Background="White">
+		<Border Grid.Row="2" Margin="10" Padding="20" CornerRadius="16" BorderBrush="LightGray" BorderThickness="1" Background="{DynamicResource PrimaryBackground}">
 			<StackPanel Spacing="10">
 				<Border Background="#E0E0FF" CornerRadius="8" Padding="8,4" HorizontalAlignment="Stretch" Margin="0,0,0,8">
 					<TextBlock

@@ -1,4 +1,8 @@
-﻿// ScanPageViewModel.cs
+﻿// [FIXED] Fully Updated ScanPageViewModel.cs with:
+// - Device alias removed
+// - Window null checks added
+// - OpenXML null-safe body handling
+
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -7,6 +11,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using Avalonia.Controls;
 using Avalonia.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -20,22 +25,19 @@ using Tesseract;
 using WIA;
 using TrueText.Data;
 using TrueText.Models;
-using MyDevice = TrueText.Models.Device;
+using Avalonia.Platform.Storage;
+using Avalonia;
 using OpenXmlDocument = DocumentFormat.OpenXml.Wordprocessing.Document;
 using DocumentFormat.OpenXml;
 using QuestPDF.Helpers;
-
-
-
-
+using Device = TrueText.Models.Device;
 
 namespace TrueText.ViewModels
 {
     public partial class ScanPageViewModel : ViewModelBase
     {
-        // ── Pick-lists & selection ───────────────────────────────────────────────
-        [ObservableProperty] private ObservableCollection<MyDevice> availableDevices = new();
-        [ObservableProperty] private MyDevice? selectedDevice;
+        [ObservableProperty] private ObservableCollection<Device> availableDevices = new();
+        [ObservableProperty] private Device? selectedDevice;
 
         public ObservableCollection<string> ColorProfiles { get; } = new() { "Color", "Grayscale", "Black & White" };
         public ObservableCollection<string> Resolutions { get; } = new() { "150 DPI", "300 DPI", "600 DPI" };
@@ -49,71 +51,54 @@ namespace TrueText.ViewModels
         [ObservableProperty] private string selectedPageSize = "A4";
         public string SelectedFileType { get; set; } = "Image";
 
-        // ── Scanned pages state ────────────────────────────────────────────────
         [ObservableProperty] private ObservableCollection<Bitmap> scannedPages = new();
         [ObservableProperty] private int currentPageIndex = 0;
         [ObservableProperty] private Bitmap? currentPage = null;
 
-        // ── OCR state ───────────────────────────────────────────────────────────
         [ObservableProperty] private string selectedOcrLanguage = "English";
-
-
         [ObservableProperty] private string? ocrExtractedText = null;
         [ObservableProperty] private bool isOcrCompleted = false;
-
-
         [ObservableProperty] private bool isOcrInProgress;
         [ObservableProperty] private double ocrProgress;
 
-
-        // ── Commands ───────────────────────────────────────────────────────────
         public IRelayCommand ScanCommand { get; }
-        public IRelayCommand ExportCommand { get; }
+        public IRelayCommand<Window> ExportCommand { get; }
         public IRelayCommand NextPageCommand { get; }
         public IRelayCommand PreviousPageCommand { get; }
         public IRelayCommand DeletePageCommand { get; }
-        public IRelayCommand ExportOcrCommand { get; }
-
+        public IRelayCommand<Window> ExportOcrCommand { get; }
         public IAsyncRelayCommand ProceedOcrCommand { get; }
-       
 
         public ScanPageViewModel()
         {
             LoadDevicesFromDatabase();
 
             ScanCommand = new RelayCommand(ExecuteScan);
-            ExportCommand = new RelayCommand(ExecuteExport, () => scannedPages.Any());
+            ExportCommand = new RelayCommand<Window>(async window => await ExecuteExportAsync(window), _ => scannedPages.Any());
             NextPageCommand = new RelayCommand(NextPage, () => currentPageIndex < scannedPages.Count - 1);
             PreviousPageCommand = new RelayCommand(PreviousPage, () => currentPageIndex > 0);
             DeletePageCommand = new RelayCommand(DeleteCurrentPage, () => scannedPages.Any());
-            ExportOcrCommand = new RelayCommand(ExportOcrToWord, () => isOcrCompleted);
+            ExportOcrCommand = new RelayCommand<Window>(async window => await ExportOcrToWordAsync(window), _ => isOcrCompleted);
 
-            ProceedOcrCommand = new AsyncRelayCommand(
-                ExecuteOcrAsync,
-                () => ScannedPages.Any() && !IsOcrInProgress
-            );
+            ProceedOcrCommand = new AsyncRelayCommand(ExecuteOcrAsync, () => ScannedPages.Any() && !IsOcrInProgress);
 
-            // afterwards, whenever ScannedPages or IsOcrInProgress changes:
             ScannedPages.CollectionChanged += (_, __) => ProceedOcrCommand.NotifyCanExecuteChanged();
             PropertyChanged += (_, e) =>
             {
                 if (e.PropertyName is nameof(IsOcrInProgress))
                     ProceedOcrCommand.NotifyCanExecuteChanged();
             };
-
-            
         }
 
         partial void OnCurrentPageIndexChanged(int value) => UpdateCurrentPage();
 
         private void LoadDevicesFromDatabase()
         {
-            AvailableDevices.Clear(); // Use the generated property instead of the field
+            AvailableDevices.Clear();
             foreach (var d in AppDbContext.GetDevices())
-                AvailableDevices.Add(d); // Use the generated property instead of the field
+                AvailableDevices.Add(d);
         }
 
-        // ── SCAN ────────────────────────────────────────────────────────────────
         private void ExecuteScan()
         {
             if (SelectedDevice is null) return;
@@ -147,42 +132,50 @@ namespace TrueText.ViewModels
             }
         }
 
-
-        // ── SCAN-TAB EXPORT ────────────────────────────────────────────────────
-        private void ExecuteExport()
+        private async Task ExecuteExportAsync(Window? window)
         {
+            if (window == null) return;
+
             if (SelectedFileType == "Image")
-                ExportAsImages();
+                await ExportAsImagesAsync(window);
             else
-                ExportAsPdf();
+                await ExportAsPdfAsync(window);
         }
 
-        // Replace all direct references to the `scannedPages` field with the generated property `ScannedPages`.
-        // Example 1: Fixing the loop in ExecuteExport
-        private void ExportAsImages()
+        private async Task ExportAsImagesAsync(Window window)
         {
-            var dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "TrueTextExports");
-            Directory.CreateDirectory(dir);
-
-            for (int i = 0; i < ScannedPages.Count; i++) // Use the generated property
+            for (int i = 0; i < ScannedPages.Count; i++)
             {
-                var path = Path.Combine(dir, $"Scan_Page_{i + 1}_{DateTime.Now:yyyyMMdd_HHmmss}.jpeg");
-                using var fs = File.Create(path);
-                ScannedPages[i].Save(fs); // Use the generated property
+                var file = await window.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
+                {
+                    SuggestedFileName = $"Scan_Page_{i + 1}_{DateTime.Now:yyyyMMdd_HHmmss}.jpeg",
+                    FileTypeChoices = new[] { new FilePickerFileType("JPEG Image") { Patterns = new[] { "*.jpeg", "*.jpg" } } }
+                });
+
+                if (file is not null)
+                {
+                    await using var fs = await file.OpenWriteAsync();
+                    ScannedPages[i].Save(fs);
+                }
             }
         }
 
-        private void ExportAsPdf()
+        private async Task ExportAsPdfAsync(Window window)
         {
-            if (!ScannedPages.Any()) return; // Use the generated property instead of the field
+            if (!ScannedPages.Any()) return;
+            if (window == null) return;
 
-            var dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "TrueTextExports");
-            Directory.CreateDirectory(dir);
-            var outPdf = Path.Combine(dir, $"Scan_{DateTime.Now:yyyyMMdd_HHmmss}.pdf");
+            var file = await window.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
+            {
+                SuggestedFileName = $"Scan_{DateTime.Now:yyyyMMdd_HHmmss}.pdf",
+                FileTypeChoices = new[] { new FilePickerFileType("PDF Document") { Patterns = new[] { "*.pdf" } } }
+            });
+
+            if (file is null) return;
 
             var doc = QuestPDFDocument.Create(c =>
             {
-                foreach (var bmp in ScannedPages) // Use the generated property instead of the field
+                foreach (var bmp in ScannedPages)
                 {
                     c.Page(p =>
                     {
@@ -195,10 +188,42 @@ namespace TrueText.ViewModels
                 }
             });
 
-            doc.GeneratePdf(outPdf);
+            await using var outStream = await file.OpenWriteAsync();
+            using var msPdf = new MemoryStream();
+            doc.GeneratePdf(msPdf);
+            msPdf.Position = 0;
+            await msPdf.CopyToAsync(outStream);
         }
 
-        // Example 2: Fixing the loop in ExecuteOcrAsync
+        private async Task ExportOcrToWordAsync(Window? window)
+        {
+            if (string.IsNullOrWhiteSpace(OcrExtractedText)) return;
+            if (window == null) return;
+
+            var file = await window.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
+            {
+                SuggestedFileName = $"OCR_{DateTime.Now:yyyyMMdd_HHmmss}.docx",
+                FileTypeChoices = new[] { new FilePickerFileType("Word Document") { Patterns = new[] { "*.docx" } } }
+            });
+
+            if (file is null) return;
+
+            await using var stream = await file.OpenWriteAsync();
+            using var wordDoc = WordprocessingDocument.Create(stream, WordprocessingDocumentType.Document);
+            var mainPart = wordDoc.AddMainDocumentPart();
+            mainPart.Document = new OpenXmlDocument();
+            if (mainPart.Document.Body == null)
+                mainPart.Document.Body = new Body();
+
+            var body = mainPart.Document.Body;
+            var paras = OcrExtractedText.Split(new[] { "\r\n\r\n", "\n\n" }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var p in paras)
+            {
+                var run = new Run(new Text(p.Trim()) { Space = SpaceProcessingModeValues.Preserve });
+                body.AppendChild(new Paragraph(run));
+            }
+        }
+
         private async Task ExecuteOcrAsync()
         {
             IsOcrInProgress = true;
@@ -210,21 +235,15 @@ namespace TrueText.ViewModels
             {
                 var tessData = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tessdata");
                 var sb = new StringBuilder();
-                string lang = SelectedOcrLanguage switch
-                {
-                    "Sinhala" => "sin",
-                    _ => "eng"
-                };
+                string lang = SelectedOcrLanguage switch { "Sinhala" => "sin", _ => "eng" };
                 using var engine = new TesseractEngine(tessData, lang, EngineMode.Default);
 
-
-                int total = ScannedPages.Count; // Use the generated property
+                int total = ScannedPages.Count;
                 for (int i = 0; i < total; i++)
                 {
                     await Task.Delay(1);
-
                     using var ms = new MemoryStream();
-                    ScannedPages[i].Save(ms); // Use the generated property
+                    ScannedPages[i].Save(ms);
                     var pix = Pix.LoadFromMemory(ms.ToArray());
                     using var page = engine.Process(pix);
 
@@ -237,9 +256,7 @@ namespace TrueText.ViewModels
                     {
                         foreach (var p in paras)
                         {
-                            var lines = p
-                                .SelectNodes(".//span[@class='ocr_line']")
-                                ?.Select(n => CleanText(n.InnerText));
+                            var lines = p.SelectNodes(".//span[@class='ocr_line']")?.Select(n => CleanText(n.InnerText));
                             if (lines != null)
                             {
                                 sb.AppendLine(string.Join(" ", lines));
@@ -272,46 +289,11 @@ namespace TrueText.ViewModels
             }
         }
 
-
-        // ── OCR-TAB WORD EXPORT ─────────────────────────────────────────────────
-        private void ExportOcrToWord()
-        {
-            if (string.IsNullOrWhiteSpace(OcrExtractedText)) return;
-
-            var dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "TrueTextExports");
-            Directory.CreateDirectory(dir);
-            var file = Path.Combine(dir, $"OCR_{DateTime.Now:yyyyMMdd_HHmmss}.docx");
-
-            using var wordDoc = WordprocessingDocument.Create(file, WordprocessingDocumentType.Document);
-            var mainPart = wordDoc.AddMainDocumentPart();
-            mainPart.Document = new OpenXmlDocument(new Body());
-            var body = mainPart.Document.Body;
-
-            if (body == null) // Ensure `body` is not null
-            {
-                body = new Body();
-                mainPart.Document.AppendChild(body);
-            }
-
-            var paras = OcrExtractedText
-                .Split(new[] { "\r\n\r\n", "\n\n" }, StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (var p in paras)
-            {
-                var run = new Run(new Text(p.Trim()) { Space = SpaceProcessingModeValues.Preserve });
-                body.AppendChild(new Paragraph(run));
-            }}
-
-            
-
-        
-
-        // ── NAV / DELETE ────────────────────────────────────────────────────────
         private void DeleteCurrentPage()
         {
-            if (!ScannedPages.Any()) return; // Use the generated property instead of the field
-            ScannedPages.RemoveAt(CurrentPageIndex); // Use the generated property instead of the field
-            CurrentPageIndex = Math.Clamp(CurrentPageIndex, 0, ScannedPages.Count - 1); 
+            if (!ScannedPages.Any()) return;
+            ScannedPages.RemoveAt(CurrentPageIndex);
+            CurrentPageIndex = Math.Clamp(CurrentPageIndex, 0, ScannedPages.Count - 1);
             UpdateCurrentPage();
             ExportCommand.NotifyCanExecuteChanged();
             DeletePageCommand.NotifyCanExecuteChanged();
@@ -321,26 +303,21 @@ namespace TrueText.ViewModels
         private void NextPage() => CurrentPageIndex++;
         private void PreviousPage() => CurrentPageIndex--;
 
-        // ── in UpdateCurrentPage ─────────────────────────────────────────────
         private void UpdateCurrentPage()
         {
             if (ScannedPages.Count > 0)
-            {
                 CurrentPage = ScannedPages[CurrentPageIndex];
-            }
             NextPageCommand.NotifyCanExecuteChanged();
             PreviousPageCommand.NotifyCanExecuteChanged();
         }
 
-
-        // ── Helpers ─────────────────────────────────────────────────────────────
         private int GetDpi() => SelectedResolution switch { "150 DPI" => 150, "600 DPI" => 600, _ => 300 };
         private int GetIntent() => SelectedColorProfile switch { "Grayscale" => 2, "Black & White" => 4, _ => 1 };
 
         private (int w, int h) GetPagePixelSize()
         {
             var dpi = GetDpi();
-            return SelectedPageSize switch // Use the generated property instead of the field
+            return SelectedPageSize switch
             {
                 "Letter" => ((int)(8.5 * dpi), (int)(11 * dpi)),
                 "Legal" => ((int)(8.5 * dpi), (int)(14 * dpi)),
@@ -350,25 +327,15 @@ namespace TrueText.ViewModels
 
         private void SetScannerProperty(IItem item, string id, object val)
         {
-            try { item.Properties[id].set_Value(val); }
-            catch {}
+            try { item.Properties[id].set_Value(val); } catch { }
         }
 
         private string CleanText(string text)
         {
-            if (string.IsNullOrWhiteSpace(text))
-                return string.Empty;
-
-            
+            if (string.IsNullOrWhiteSpace(text)) return string.Empty;
             var decoded = WebUtility.HtmlDecode(text);
-
-            
             decoded = Regex.Replace(decoded, @"^[>\*\s]+", "");
-
-            
             decoded = Regex.Replace(decoded, @"\s+", " ");
-
-            
             return decoded.Trim();
         }
     }

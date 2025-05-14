@@ -9,7 +9,7 @@ namespace TrueText.ViewModels;
 
 public class RibbonControlViewModel : INotifyPropertyChanged
 {
-    private string _greeting;
+    private string _greeting = string.Empty; 
     public string Greeting
     {
         get => _greeting;

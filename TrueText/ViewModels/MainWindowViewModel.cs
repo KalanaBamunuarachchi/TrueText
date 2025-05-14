@@ -38,7 +38,7 @@ namespace TrueText.ViewModels
             NavigateToHelpPageCommand = new RelayCommand(NavigateToHelpPage, () => true);
             NavigateToSettingsPageCommand = new RelayCommand(NavigateToSettingsPage, () => true);
 
-            CurrentPage = _dashboardPageViewModel; // Initialize _currentPage to avoid nullability issues.
+            CurrentPage = _dashboardPageViewModel; 
 
             Debug.WriteLine($"NavigateToDashboardCommand: {NavigateToDashboardCommand != null}");
             Debug.WriteLine($"NavigateToScanPageCommand: {NavigateToScanPageCommand != null}");
@@ -54,7 +54,7 @@ namespace TrueText.ViewModels
 
         }
 
-        // Add default initializations for the commands to avoid nullability issues.
+        
         public IRelayCommand NavigateToDashboardCommand { get; private set; } = null!;
         public IRelayCommand NavigateToScanPageCommand { get; private set; } = null!;
         public IRelayCommand NavigateToDevicesPageCommand { get; private set; } = null!;
