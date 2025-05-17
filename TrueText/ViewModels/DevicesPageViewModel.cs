@@ -33,7 +33,7 @@ namespace TrueText.ViewModels
             Devices = new ObservableCollection<TrueText.Models.Device>();
             AddDeviceCommand = new RelayCommand(ScanForDevices);
             LoadDevices();
-            StartDevicePolling();
+            //StartDevicePolling();
         }
 
         private void ScanForDevices()

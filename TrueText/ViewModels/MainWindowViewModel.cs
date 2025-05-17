@@ -23,14 +23,24 @@ namespace TrueText.ViewModels
         private readonly HelpPageViewModel _helpPageViewModel = new();
         private readonly SettingsPageViewModel _settingsPageViewModel = new();
 
-        
+        public DashboardPageViewModel DashboardPageViewModel => _dashboardPageViewModel;
 
 
-       
+
+
+
+
 
         public MainWindowViewModel()
         {
             _scanPageViewModel = new ScanPageViewModel();
+            _scanPageViewModel.RecentOcrExported += () =>
+            {
+                _dashboardPageViewModel.LoadRecentScans();
+            };
+
+            //ClearAllAppData();
+
 
             NavigateToDashboardCommand = new RelayCommand(NavigateToDashboard, () => true);
             NavigateToScanPageCommand = new RelayCommand(NavigateToScanPage, () => true);
@@ -85,7 +95,17 @@ namespace TrueText.ViewModels
         {
             CurrentPage = _settingsPageViewModel;
         }
+        /*public void ClearAllAppData()
+        {
+            using (var db = new AppDbContext())
+            {
+                db.Devices.RemoveRange(db.Devices);
+                db.SaveChanges();
+            }
 
-        
+            
+        }*/
+
+
     }
 }

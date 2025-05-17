@@ -69,6 +69,9 @@ namespace TrueText.ViewModels
         public IRelayCommand<Window> ExportOcrCommand { get; }
         public IAsyncRelayCommand ProceedOcrCommand { get; }
 
+        public event Action? RecentOcrExported;
+
+
         public ScanPageViewModel()
         {
             LoadDevicesFromDatabase();
@@ -208,8 +211,10 @@ namespace TrueText.ViewModels
 
             if (file is null) return;
 
-            await using var stream = await file.OpenWriteAsync();
+            var filePath = file.Path.LocalPath;
+            await using var stream = new FileStream(filePath, FileMode.Create, FileAccess.ReadWrite);
             using var wordDoc = WordprocessingDocument.Create(stream, WordprocessingDocumentType.Document);
+
             var mainPart = wordDoc.AddMainDocumentPart();
             mainPart.Document = new OpenXmlDocument();
             if (mainPart.Document.Body == null)
@@ -222,7 +227,11 @@ namespace TrueText.ViewModels
                 var run = new Run(new Text(p.Trim()) { Space = SpaceProcessingModeValues.Preserve });
                 body.AppendChild(new Paragraph(run));
             }
+
+            RecordRecentExport(filePath);
+            RecentOcrExported?.Invoke();
         }
+
 
         private async Task ExecuteOcrAsync()
         {
@@ -292,13 +301,25 @@ namespace TrueText.ViewModels
         private void DeleteCurrentPage()
         {
             if (!ScannedPages.Any()) return;
+
             ScannedPages.RemoveAt(CurrentPageIndex);
-            CurrentPageIndex = Math.Clamp(CurrentPageIndex, 0, ScannedPages.Count - 1);
-            UpdateCurrentPage();
+
+            if (ScannedPages.Count == 0)
+            {
+                CurrentPageIndex = 0;
+                CurrentPage = null; 
+            }
+            else
+            {
+                CurrentPageIndex = Math.Clamp(CurrentPageIndex, 0, ScannedPages.Count - 1);
+                UpdateCurrentPage();
+            }
+
             ExportCommand.NotifyCanExecuteChanged();
             DeletePageCommand.NotifyCanExecuteChanged();
             ProceedOcrCommand.NotifyCanExecuteChanged();
         }
+
 
         private void NextPage() => CurrentPageIndex++;
         private void PreviousPage() => CurrentPageIndex--;
@@ -338,5 +359,25 @@ namespace TrueText.ViewModels
             decoded = Regex.Replace(decoded, @"\s+", " ");
             return decoded.Trim();
         }
+
+
+        private void RecordRecentExport(string fullPath)
+        {
+            try
+            {
+                var logDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "TrueText");
+                Directory.CreateDirectory(logDir);
+
+                var logFile = Path.Combine(logDir, "recent_exports.txt");
+
+                var logEntry = $"{DateTime.UtcNow:O}|{fullPath}";
+                File.AppendAllLines(logFile, new[] { logEntry });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to record recent export: {ex.Message}");
+            }
+        }
+
     }
 }

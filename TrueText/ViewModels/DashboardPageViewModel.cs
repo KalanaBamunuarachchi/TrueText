@@ -40,31 +40,37 @@ namespace TrueText.ViewModels
         }
 
 
-       
 
-        private void LoadRecentScans()
+
+        public void LoadRecentScans()
         {
             RecentScans.Clear();
 
-            if (!Directory.Exists(_exportDir))
-                return;
+            var logFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "TrueText", "recent_exports.txt");
+            if (!File.Exists(logFile)) return;
 
-            
-            var files = Directory
-                .GetFiles(_exportDir)
-                .OrderByDescending(f => File.GetLastWriteTimeUtc(f))
+            var entries = File.ReadAllLines(logFile)
+                .Select(line => line.Split('|'))
+                .Where(parts => parts.Length == 2 && File.Exists(parts[1]))
+                .Select(parts => new
+                {
+                    Time = DateTime.Parse(parts[0]),
+                    Path = parts[1]
+                })
+                .OrderByDescending(e => e.Time)
                 .Take(5);
 
-            foreach (var file in files)
+            foreach (var entry in entries)
             {
                 RecentScans.Add(new RecentScan
                 {
-                    Name = Path.GetFileNameWithoutExtension(file),
-                    Type = Path.GetExtension(file).TrimStart('.').ToUpperInvariant(),
-                    FilePath = file
+                    Name = Path.GetFileNameWithoutExtension(entry.Path),
+                    Type = Path.GetExtension(entry.Path).TrimStart('.').ToUpperInvariant(),
+                    FilePath = entry.Path
                 });
             }
         }
+
 
         private void ShowInExplorer(RecentScan? scan)
         {
