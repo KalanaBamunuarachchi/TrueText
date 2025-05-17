@@ -26,9 +26,7 @@
 					BorderThickness="1"
 					Padding="20"
 					Margin="10">
-				<Button Classes="Scan-Circle"
-        Content="SCAN"
-/>
+				<Button Classes="Scan-Circle" Content="SCAN"/>
 
 
 
