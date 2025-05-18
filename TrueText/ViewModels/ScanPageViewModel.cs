@@ -1,9 +1,4 @@
-﻿// [FIXED] Fully Updated ScanPageViewModel.cs with:
-// - Device alias removed
-// - Window null checks added
-// - OpenXML null-safe body handling
-
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
